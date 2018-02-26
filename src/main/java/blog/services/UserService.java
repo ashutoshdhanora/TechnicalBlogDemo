@@ -6,4 +6,5 @@ public interface UserService {
 
     boolean authenticate(String username, String password);
     boolean registerNewUser(User user);
+    User getUser(String userName);
 }
