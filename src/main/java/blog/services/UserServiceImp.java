@@ -23,4 +23,9 @@ public class UserServiceImp implements UserService {
         userManager.registerUser(user);
         return true;
     }
+
+    @Override
+    public User getUser(String userName) {
+        return userManager.getUser(userName);
+    }
 }

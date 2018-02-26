@@ -1,5 +1,6 @@
 package blog.controller;
 
+import blog.common.CurrentUser;
 import blog.form.RegisterNewUser;
 import blog.model.Post;
 import blog.model.ProfilePhoto;
@@ -31,7 +32,9 @@ public class UserController {
 
     @RequestMapping(value = "/users/login", method = RequestMethod.POST)
     public String login(RegisterNewUser registerNewUser, Model model) {
+
         if (userService.authenticate(registerNewUser.getUsername(), registerNewUser.getPassword())) {
+            CurrentUser.getInstance().setUserName(registerNewUser.getUsername());
             return "redirect:/posts";
         }
 
