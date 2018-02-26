@@ -2,7 +2,9 @@ package blog.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -21,10 +23,15 @@ public class Post implements Serializable {
     @Column
     private Date date = new Date();
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    public Post() {}
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Category> categoryList = new ArrayList<Category>();
+
+    public Post() {
+    }
 
     public Post(Long id, String title, String body) {
         this.id = id;
@@ -70,5 +77,13 @@ public class Post implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
     }
 }

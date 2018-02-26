@@ -1,16 +1,12 @@
 package blog.common;
 
 import blog.model.Post;
-import javafx.geometry.Pos;
-import jdk.nashorn.internal.scripts.JD;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import java.io.*;
-import java.util.*;
+import java.util.List;
 
 @SuppressWarnings("unchecked")
 public class PostsManager extends SessionManager {
@@ -46,7 +42,7 @@ public class PostsManager extends SessionManager {
 
         Session session = openSession();
         post.setId(System.currentTimeMillis() % 1000);
-        session.save(post);
+        session.merge(post);
         commitSession(session);
         return post;
     }

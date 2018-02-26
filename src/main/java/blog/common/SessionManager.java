@@ -1,5 +1,6 @@
 package blog.common;
 
+import blog.model.Category;
 import blog.model.Post;
 import blog.model.ProfilePhoto;
 import blog.model.User;
@@ -18,6 +19,7 @@ public class SessionManager {
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Post.class);
         configuration.addAnnotatedClass(ProfilePhoto.class);
+        configuration.addAnnotatedClass(Category.class);
         configuration.configure("hibernate.cfg.xml");
 
         SessionFactory sessionFactory = configuration.buildSessionFactory();
